@@ -10,7 +10,7 @@ const postcss       = require('gulp-postcss');
 const autoprefixer  = require('autoprefixer');
 const cssnano       = require('cssnano');
 var   replace       = require('gulp-replace');
-const tinypng       = require('gulp-tinypng');
+const tinypng       = require('gulp-tinypng-compress');
 const webp          = require('gulp-webp');
 var   htmlmin       = require('gulp-htmlmin');
 var   rename        = require("gulp-rename");
@@ -22,7 +22,7 @@ const files = {
     jsPath          : 'src/js/**/*.js',
     scssPathTo      : 'dist/css',
     jsPathTo        : 'dist/js',
-    imgPath         : 'src/imgs/**/*',
+    imgPath         : 'src/imgs/**/*.{png,PNG,jpg,JPG,jpeg,JPEG}',
     imgPathTo       : 'dist/imgs/',
     svgsimgPath     : 'src/imgs/**/*.svg',
     svgsimgPathTo   : 'dist/imgs/',
@@ -147,8 +147,12 @@ function deletegifs() {
 // Minify Img
 function minImg() {
     return src(files.imgPath)
-        .pipe(tinypng('DwMzjHv0DYyR5mrMBtm3cBFqQLpFp032')) // bogdan.s@fxoro.com
-        // .pipe(tinypng('ZXMw587q2Tnzc7j1BcHVLmqhS9gksVy6')) // k.bobbaru@gmail.com
+        .pipe(tinypng({
+            key: 'DwMzjHv0DYyR5mrMBtm3cBFqQLpFp032', // bogdan.s@fxoro.com
+            // key: 'ZXMw587q2Tnzc7j1BcHVLmqhS9gksVy6', // k.bobbaru@gmail.com
+            sigFile: 'src/imgs/.tinypng-sigs',
+            log: true
+        }))
         .pipe(dest(files.imgPathTo))
 }
 
@@ -204,7 +208,7 @@ exports.end = series(
     copygifs,
     deletesvgs,
     deletegifs,
-    // minImg,
+    minImg,
     // webpimgs,
     copysvgs_b,
     copygifs_b,
