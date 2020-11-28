@@ -12,19 +12,22 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
 		<link rel="stylesheet" href="dist/css/scsseco_app.css?cb=1579787740102">
+		<!-- Locomotive Scroll Style -->
+		<!-- <link rel="stylesheet" href="node_modules/locomotive-scroll/dist/locomotive-scroll.min.css"> -->
 		<title>BrandName</title>
 		<style></style>
 		<script></script>
 	</head>
-	<body>
+	<body id="top">
 		<div id="site-wrapper">
 			<header id="header" class="siteHeader"></header>
-			<section id="section1" class="subHeader"></section>
+			<section id="section1" class="subHeader subHeader1">
+			</section>
 			<footer id="footer" class="siteFooter">
 				<div class="container">
 					<div class="row">
 						<div class="col-12">
-							<p class="copy"><span>&copy; <span id="lp_year"></span></span> BrandName</p>
+							<p class="copy"><span>&copy; <span id="lp_year"></span></span> <a href="#top" class="csseco_scrollTo">BrandName</a></p>
 						</div>
 					</div>
 				</div>
@@ -282,8 +285,14 @@
 
 		<script src="vendor/jquery/jquery.min.js"></script>
 		<!-- popper.min.js is used for dropdowns, popover and tooltips -->
-		<script src="vendor/popper/popper.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.js"></script>
+		<!-- <script src="vendor/popper/popper.min.js"></script> -->
+		<!-- <script src="vendor/bootstrap/js/bootstrap.js"></script> -->
+		<!-- Locomotive Scroll Script -->
+		<script src="vendor/locomotive_scroll/locomotive-scroll.min.js"></script>
+		<!-- GSAP -->
+		<script src="vendor/gsap/gsap.min.js"></script>
+		<!-- GSAP ScrollTrigger -->
+		<script src="vendor/gsap/ScrollTrigger.min.js"></script>
 		<!-- 
 			*
 			* Edit path for bundle.js, googleanalytics.js, jquery.cookie.js, 
@@ -294,11 +303,11 @@
 		<script src="../../../assets/js/googleanalytics.js"></script>
 		<script src="../../../assets/js/jquery.cookie.js"></script>
 		<script src="../../../assets/js/jquery.validate.js"></script>
-		<script src="../../../assets/js/tagmanager.js"></script> -->
+		<script src="../../../assets/js/tagmanager.js"></script>
 		<script>
 			var lng="EN";
 			var campaignName="BrandName";
-		</script>
+		</script> -->
 		<script src="dist/js/scsseco_app.js?cb=1584055009736"></script>
 	</body>
 </html>

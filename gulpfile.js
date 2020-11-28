@@ -92,6 +92,31 @@ function popperjs(){
         .pipe(dest('vendor/popper/'));
 }
 
+// Locomotive Scroll
+function locoScrollScript(){
+    return src('node_modules/locomotive-scroll/dist/locomotive-scroll.min.js')
+        // .pipe(terser()) 
+        .pipe(dest('vendor/locomotive_scroll/'));
+}
+function locoScrollStyle(){
+    return src('node_modules/locomotive-scroll/dist/locomotive-scroll.min.css')
+        // .pipe(terser()) 
+        .pipe(dest('vendor/locomotive_scroll/'));
+}
+
+// Gsap
+function gsap(){
+    return src('node_modules/gsap/dist/gsap.min.js')
+        // .pipe(terser()) 
+        .pipe(dest('vendor/gsap/'));
+}
+// GSAP ScrollTrigger
+function scrollTrigger(){
+    return src('node_modules/gsap/dist/ScrollTrigger.min.js')
+        // .pipe(terser()) 
+        .pipe(dest('vendor/gsap/'));
+}
+
 // HTML task: minify site.html to iindex.html
 function htmlTask() {
     return src('site.html')
@@ -190,7 +215,10 @@ function editCSS() {
 function watchTask(){
     watch([files.scssPath, files.jsPath, files.html_r], 
         series(
-            parallel(scssTask, jsTask_concat, jsTask_separate, htmlTask),
+            scssTask, 
+            jsTask_concat, 
+            jsTask_separate, 
+            htmlTask,
             renameTask,
             deleteTask
         )
@@ -209,6 +237,10 @@ exports.end = series(
     jsTask_concat, 
     jsTask_separate, 
     jsTaskBS, 
+    // locoScrollScript,
+    // locoScrollStyle,
+    // gsap,
+    // scrollTrigger,
     htmlTask,    
     renameTask,
     deleteTask,
@@ -223,6 +255,10 @@ exports.default = series(
     jsTask_concat, 
     jsTask_separate, 
     jsTaskBS, 
+    locoScrollScript,
+    locoScrollStyle,
+    gsap,
+    scrollTrigger,
     htmlTask,
     watchTask
 );

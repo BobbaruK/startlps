@@ -3,9 +3,9 @@
 	*
   */
 
-jQuery(document).on("ready", function ($) {
+(function () {
 
-	$(".csseco_scrollTo").on("clic",  function(e) {
+	$(".csseco_scrollTo").on("click",  function(e) {
 		e.preventDefault();
 		var location = $(this).attr('href');
 		$("html, body").animate({
@@ -13,5 +13,5 @@ jQuery(document).on("ready", function ($) {
 		}, 1000);
 	});
 
-});
+})();
 
