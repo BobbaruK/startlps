@@ -19,19 +19,17 @@ var   clean         = require('gulp-clean');
 // File paths
 const files = { 
     scssPath        : 'src/scss/**/*.scss',
+    scssPathTo      : 'dist/css/',
     jsPath          : 'src/js/**/*.js',
-    scssPathTo      : 'dist/css',
-    jsPathTo        : 'dist/js',
+    jsPath_concat   : 'src/js/concat/**/*.js',
+    jsPath_separate : 'src/js/separate/**/*.js',
+    jsPathTo        : 'dist/js/',
     imgPath         : 'src/imgs/**/*.{png,PNG,jpg,JPG,jpeg,JPEG}',
     imgPathTo       : 'dist/imgs/',
     svgsimgPath     : 'src/imgs/**/*.svg',
     svgsimgPathTo   : 'dist/imgs/',
-    svgsimgPath_b   : 'dist/imgs/**/*.svg',
-    svgsimgPathTo_b : 'src/imgs/',
     gifsimgPath     : 'src/imgs/**/*.gif',
     gifsimgPathTo   : 'dist/imgs/',
-    gifsimgPath_b   : 'dist/imgs/**/*.gif',
-    gifsimgPathTo_b : 'src/imgs/',
     html_r          : 'site.html'
 }
 
@@ -46,14 +44,17 @@ function scssTask(){
 }
 
 // JS task: concatenates and uglifies JS files to script.js
-function jsTask(){
-    return src([
-            files.jsPath,
-            '!' + 'src/js/forms.js', // to exclude any specific files
-        ])
-        .pipe(concat('scripts.js'))
+function jsTask_concat(){
+    return src([files.jsPath_concat])
+        .pipe(concat('scsseco_app.js'))
         .pipe(terser())
         .pipe(dest(files.jsPathTo));
+}
+
+function jsTask_separate(){
+    return src([files.jsPath_separate])
+        .pipe(terser())
+        .pipe(dest(files.jsPathTo+"/scsseco_app/"));
 }
 
 function jsTaskBS(){
@@ -116,6 +117,14 @@ function deleteTask() {
         .pipe(clean())
 }
 
+// Edit index.html - imgs src
+function editHTML() {
+    return src(['index.html'])
+        .pipe(replace('src/', 'dist/'))
+        // .pipe(replace('<img src="', '<img data-src="')) // 4 lazyload
+        .pipe(dest('.'))
+}
+
 // Cachebust
 var cbString = new Date().getTime();
 function cacheBustTask(){
@@ -134,16 +143,6 @@ function copygifs() {
         .pipe(dest(files.gifsimgPathTo))
 }
 
-// Delete svgs and gifs
-function deletesvgs() {
-    return src(files.svgsimgPath, { read: false })
-        .pipe(clean())
-}
-function deletegifs() {
-    return src(files.gifsimgPath, { read: false })
-        .pipe(clean())
-}
-
 // Minify Img
 function minImg() {
     return src(files.imgPath)
@@ -154,16 +153,6 @@ function minImg() {
             log: true
         }))
         .pipe(dest(files.imgPathTo))
-}
-
-// Copy back svg and gif imgs for development
-function copysvgs_b() {
-    return src(files.svgsimgPath_b)
-        .pipe(dest(files.svgsimgPathTo_b))
-}
-function copygifs_b() {
-    return src(files.gifsimgPath_b)
-        .pipe(dest(files.gifsimgPathTo_b))
 }
 
 // Webp Images
@@ -177,8 +166,16 @@ function webpimgs() {
 function editHTML() {
     return src(['index.html'])
         .pipe(replace('src/', 'dist/'))
-        .pipe(replace('<img src="', '<img data-src="')) // 4 lazyload
+        // .pipe(replace('<img src="', '<img data-src="')) // 4 lazyload
         .pipe(dest('.'))
+}
+
+// Cachebust
+var cbString = new Date().getTime();
+function cacheBustTask(){
+    return src(['index.html'])
+        .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
+        .pipe(dest('.'));
 }
 
 // Edit csseco-style.css - imgs src
@@ -192,10 +189,8 @@ function editCSS() {
 // If any change, run scss and js tasks simultaneously
 function watchTask(){
     watch([files.scssPath, files.jsPath, files.html_r], 
-        // minImg,
-        // webpimgs,
         series(
-            parallel(scssTask, jsTask, htmlTask),
+            parallel(scssTask, jsTask_concat, jsTask_separate, htmlTask),
             renameTask,
             deleteTask
         )
@@ -206,15 +201,15 @@ function watchTask(){
 exports.end = series(
     copysvgs,
     copygifs,
-    deletesvgs,
-    deletegifs,
-    minImg,
+    // minImg,
     // webpimgs,
-    copysvgs_b,
-    copygifs_b,
     jquery,
     popperjs,
-    parallel(scssTask, jsTask, jsTaskBS, htmlTask),    
+    scssTask, 
+    jsTask_concat, 
+    jsTask_separate, 
+    jsTaskBS, 
+    htmlTask,    
     renameTask,
     deleteTask,
     cacheBustTask,
@@ -224,6 +219,10 @@ exports.end = series(
 
 // Export the default Gulp task so it can be run
 exports.default = series(
-    parallel(scssTask, jsTask, jsTaskBS, htmlTask),
+    scssTask, 
+    jsTask_concat, 
+    jsTask_separate, 
+    jsTaskBS, 
+    htmlTask,
     watchTask
 );
