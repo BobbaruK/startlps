@@ -10,18 +10,24 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
 		<link rel="stylesheet" href="dist/css/scsseco_app.css?cb=1579787740102">
-		<!-- Locomotive Scroll Style -->
-		<!-- <link rel="stylesheet" href="node_modules/locomotive-scroll/dist/locomotive-scroll.min.css"> -->
 		<title>BrandName</title>
 		<style></style>
 		<script></script>
 	</head>
 	<body id="top">
 		<div id="site-wrapper">
-			<header id="header" class="siteHeader"></header>
+			<header id="header" class="siteHeader">Header<hr></header>
 			<section id="section1" class="subHeader subHeader1">
+				Content
+
+				<!-- test -->
+				<div style="height: 100vh; background-color: turquoise; position: relative;">
+					<div class="patrat" style="background: tomato; position: absolute; width: 200px; height: 200px; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center;" >
+						test
+					</div>
+				</div>
+				<!-- END test -->
 			</section>
 			<footer id="footer" class="siteFooter">
 				<div class="container">
@@ -32,13 +38,11 @@
 					</div>
 				</div>
 			</footer>
-			
-
 		</div>
 		<!-- 
 			Za Form
 			* Do not use this if you use multiple forms
-		-->
+		-->	
 		<div class="form-wrap pForm" id="start-trading">
 			<div class="innercontainer">
 				<div class="formouter" id="form1">
@@ -287,10 +291,10 @@
 		<!-- popper.min.js is used for dropdowns, popover and tooltips -->
 		<!-- <script src="vendor/popper/popper.min.js"></script> -->
 		<!-- <script src="vendor/bootstrap/js/bootstrap.js"></script> -->
-		<!-- Locomotive Scroll Script -->
-		<script src="vendor/locomotive_scroll/locomotive-scroll.min.js"></script>
 		<!-- GSAP -->
 		<script src="vendor/gsap/gsap.min.js"></script>
+		<!-- GSAP ScrollTo -->
+		<script src="vendor/gsap/ScrollToPlugin.min.js"></script>
 		<!-- GSAP ScrollTrigger -->
 		<script src="vendor/gsap/ScrollTrigger.min.js"></script>
 		<!-- 
@@ -299,7 +303,7 @@
 			* jquery.validate.js and tagmanager.js
 			*
 		-->
-		<!-- <script src="../../../assets/js/bundle.js"></script>
+		<script src="../../../assets/js/bundle.js"></script>
 		<script src="../../../assets/js/googleanalytics.js"></script>
 		<script src="../../../assets/js/jquery.cookie.js"></script>
 		<script src="../../../assets/js/jquery.validate.js"></script>
@@ -307,7 +311,7 @@
 		<script>
 			var lng="EN";
 			var campaignName="BrandName";
-		</script> -->
+		</script>
 		<script src="dist/js/scsseco_app.js?cb=1584055009736"></script>
 	</body>
 </html>
