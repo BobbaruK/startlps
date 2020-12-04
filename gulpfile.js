@@ -220,11 +220,9 @@ function watchTask(){
 }
 
 // When the site is ready to deploy
-exports.end = series(
+exports.deep = series(
     copysvgs,
     copygifs,
-    // minImg,
-    // webpimgs,
     jquery,
     popperjs,
     scssTask, 
@@ -242,15 +240,22 @@ exports.end = series(
     editCSS
 );
 
+// Minify via Tinypng
+exports.tiny = series(
+    minImg,
+)
+
+// Minify via webp
+exports.webp = series(
+    webpimgs,
+)
+
 // Export the default Gulp task so it can be run
 exports.default = series(
     scssTask, 
     jsTask_concat, 
     jsTask_separate, 
     jsTaskBS,
-    gsap,
-    gsap_ScrollTrigger,
-    gsap_ScrollTo,
     htmlTask,
     watchTask
 );
