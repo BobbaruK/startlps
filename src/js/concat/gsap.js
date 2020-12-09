@@ -42,7 +42,7 @@ const tl = gsap.timeline({
 
 tl
   .to(patrat, {
-    duration: 3,
+    duration: 1,
     x: 300,
     y: -260,
     rotate: 360,
@@ -54,5 +54,6 @@ ScrollTrigger.create({
   start: "top center",
   end: "bottom center",
   markers: true,
+  toggleActions: "play pause resume reset",
   // scrub: 3
 });
