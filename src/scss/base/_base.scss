@@ -33,22 +33,10 @@ body {
 }
 
 /**
- * Basic styles for links
- */
-a {
-  color: $brand-color;
-  text-decoration: none;
-
-  @include on-event {
-    color: $text-color;
-    text-decoration: underline;
-  }
-}
-
-/**
  * Basic styles for sections
  */
  section,
+ header#header.siteHeader,
  footer#footer.siteFooter {
   padding: var(--margin_padding_bottom) 0;
  }
