@@ -1,3 +1,25 @@
 // -----------------------------------------------------------------------------
 // This file contains CSS helper classes.
 // -----------------------------------------------------------------------------
+
+// If is pos IE
+#ifIE {
+  #ifIE_inner {
+    display: block;
+    height: 100vh;
+    position: relative;
+    .notIE {
+      border: 3px solid red;
+      border-radius: 15px;
+      left: 50%;
+      max-width: 80%;
+      margin: 40px auto;
+      padding: 20px;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
+  }
+}

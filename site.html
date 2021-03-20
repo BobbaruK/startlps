@@ -12,20 +12,17 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 		<link rel="stylesheet" href="dist/css/scsseco_app.css?cb=1579787740102">
 		<title>BrandName</title>
-		<style>
-			.notIE {
-				border: 3px solid red;
-				border-radius: 15px;
-				max-width: 80%;
-				margin: 40px auto;
-				padding: 20px;
-				text-align: center;
-			}
-		</style>
+		<style></style>
 		<script></script>
 	</head>
 	<body id="top">
-		<div id="ifIE"></div>
+		<div id="ifIE">
+			<div class="container">
+				<div class="row">
+					<div class="col-12" id="ifIE_inner"></div>
+				</div>
+			</div>
+		</div>
 		<div id="site-wrapper">
 			<header id="header" class="siteHeader">Header<hr></header>
 			<section id="section1" class="subHeader subHeader1">
@@ -322,18 +319,6 @@
 		<script>
 			var lng="EN";
 			var campaignName="BrandName";
-
-			// If using pos ie
-			function isItIE() {
-				user_agent = navigator.userAgent;
-				var is_it_ie = user_agent.indexOf("MSIE ") > -1 || user_agent.indexOf("Trident/") > -1;
-				return is_it_ie;
-			}
-			if (isItIE()) {
-				document.getElementById("ifIE").innerHTML = "<p class='notIE'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/'>upgrade your browser</a> to improve your experience.</p>";
-			} else {
-				document.getElementById("ifie").style.display = "none";
-			}
 		</script>
 	</body>
 </html>
