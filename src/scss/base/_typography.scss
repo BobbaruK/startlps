@@ -28,12 +28,15 @@ ul {
 }
 
 // Links
- a {
-  color: $brand-color;
+a {
+  color: $brand-primary-color;
   text-decoration: none;
-
-  @include on-event {
-    color: $text-color;
+  &:hover,
+  &:focus {
+    color: $text_color;
     text-decoration: underline;
+  }
+  &:focus {
+    outline: 1px solid $brand-primary-color;
   }
 }

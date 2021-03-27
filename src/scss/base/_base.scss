@@ -2,31 +2,58 @@
 // This file contains very basic styles.
 // -----------------------------------------------------------------------------
 
+
+:root {
+
+  // @each $color, $shades in $brand_colors {
+  //   @each $shade, $value in $shades {
+  //     --clr-#{$color}-#{$shade}: #{$value};
+  //   }
+  // }
+
+  // Spacing
+  --margin_padding_bottom     :   20px;
+  @include media(sm) {
+    --margin_padding_bottom   :   30px;
+  }
+  @include media(md) {
+    --margin_padding_bottom   :   35px;
+  }
+  @include media(lg) {
+    --margin_padding_bottom   :   40px;
+  }
+  @include media(xl) {
+    --margin_padding_bottom   :   50px;
+  }
+
+}
+
+
 /**
  * bs already
  */
- html {}
- *,
- *::before,
- *::after {}
- 
- /**
+html {}
+*,
+*::before,
+*::after {}
+
+/**
   * Body Styles
   */
- body {
-   color: $text-color;
-   font-family: "Roboto", sans-serif;
-   #site-wrapper {
-     overflow: hidden;
-   }
- }
- 
- /**
+body {
+  background-color: $bg_color;
+  color: $text_color;
+  font-family: "Roboto", sans-serif;
+  #site-wrapper {
+    overflow: hidden;
+  }
+}
+
+/**
   * Basic styles for sections
   */
- section,
- header#header.siteHeader,
- footer#footer.siteFooter {
-   padding: var(--margin_padding_bottom) 0;
- }
- 
+section,
+header#header.siteHeader,
+footer#footer.siteFooter {
+  padding: var(--margin_padding_bottom) 0;
+}

@@ -37,17 +37,24 @@ const files = {
 
 // Sass task: compiles the style.scss file into style.css
 function scssTask() {
-  return src(files.scssPath)
-    .pipe(sourcemaps.init()) // initialize sourcemaps first
-    .pipe(sass()) // compile SCSS to CSS
-    .pipe(postcss([autoprefixer(), cssnano()])) // PostCSS plugins
-    .pipe(sourcemaps.write(".")) // write sourcemaps file in current directory
-    .pipe(dest(files.scssPathTo)); // put final CSS in dist folder
+  return (
+    src(files.scssPath)
+      .pipe(sourcemaps.init()) // initialize sourcemaps first
+      .pipe(sass()) // compile SCSS to CSS
+      // .pipe(postcss([autoprefixer(), cssnano()])) // PostCSS plugins
+      .pipe(sourcemaps.write(".")) // write sourcemaps file in current directory
+      .pipe(dest(files.scssPathTo))
+  ); // put final CSS in dist folder
 }
 
 // JS task: concatenates and uglifies JS files to script.js
 function jsTask_concat() {
-  return src([files.jsPath_concat])
+  return src([
+    "src/js/concat/js-misc.js", // Vanilla JS scripts
+    "src/js/concat/js-gsap.js", // Vanilla JS GSAP scripts
+    "src/js/concat/jq-scripts.js", // JQuery scripts
+    "src/js/concat/jq-scssecoSlider.js", // Jquery GSAP Slider (scssecoSlider)
+  ])
     .pipe(concat("scsseco_app.js"))
     .pipe(terser())
     .pipe(dest(files.jsPathTo));
@@ -197,25 +204,13 @@ function editHTML() {
 
 // Edit csseco-style.css - imgs src
 function editCSS() {
-  return src(["dist/css/*.css"])
-    .pipe(replace("../../src/imgs/", "../imgs/"))
-    .pipe(dest("dist/css/."));
+  return src(["dist/css/*.css"]).pipe(replace("../../src/imgs/", "../imgs/")).pipe(dest("dist/css/."));
 }
 
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
 function watchTask() {
-  watch(
-    [files.scssPath, files.jsPath, files.html_r],
-    series(
-      scssTask,
-      jsTask_concat,
-      jsTask_separate,
-      htmlTask,
-      renameTask,
-      deleteTask
-    )
-  );
+  watch([files.scssPath, files.jsPath, files.html_r], series(scssTask, jsTask_concat, jsTask_separate, htmlTask, renameTask, deleteTask));
 }
 
 // When the site is ready to deploy
@@ -244,11 +239,4 @@ exports.tiny = series(copysvgs, copygifs, copywebp, minImg);
 exports.webp = series(copysvgs, copygifs, copywebp, webpimgs);
 
 // Export the default Gulp task so it can be run
-exports.default = series(
-  scssTask,
-  jsTask_concat,
-  jsTask_separate,
-  jsTaskBS,
-  htmlTask,
-  watchTask
-);
+exports.default = series(scssTask, jsTask_concat, jsTask_separate, jsTaskBS, htmlTask, watchTask);

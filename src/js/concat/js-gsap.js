@@ -1,8 +1,11 @@
-/*! GSAP related scripts */
+/*! Vanilla JS Gsap scripts */
+
+//------------------------------------
+// GSAP Register Plugins
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 //------------------------------------
 // GSAP ScrollTo
-
 let scsseco_scrollTo = document.querySelectorAll(".scsseco_scrollTo");
 
 scsseco_scrollTo.forEach(function (el, index) {
@@ -40,7 +43,11 @@ ScrollTrigger.create({
   trigger: patrat,
   start: "top center",
   end: "bottom center",
-  markers: true,
+  markers: {
+    // startColor: "black",
+    // endColor: "green",
+    fontSize: "14px",
+  },
   toggleActions: "play pause resume reset",
   // scrub: 3
 });

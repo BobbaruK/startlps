@@ -3,21 +3,42 @@
 // -----------------------------------------------------------------------------
 
 // Colors
-    // Bootstrap overwrite
-$theme-colors: (
-  "primary"                   :   #0074d9,
-  "secondary"                 :   #6c757d,
-  "success"                   :   #28a745,
-  "info"                      :   #17a2b8,
-  "warning"                   :   #ffc107,
-  "danger"                    :   #dc3545,
-  "light"                     :   #f8f9fa,
-  "dark"                      :   #343a40
-);
+$white                        :   hsl(0, 0%, 100%);
+$gray-100                     :   hsl(0, 0%, 90%);
+$gray-200                     :   hsl(0, 0%, 80%);
+$gray-300                     :   hsl(0, 0%, 70%);
+$gray-400                     :   hsl(0, 0%, 60%);
+$gray-500                     :   hsl(0, 0%, 50%);
+$gray-600                     :   hsl(0, 0%, 40%);
+$gray-700                     :   hsl(0, 0%, 30%);
+$gray-800                     :   hsl(0, 0%, 20%);
+$gray-900                     :   hsl(0, 0%, 10%);
+$black                        :   hsl(0, 0%, 0%);
 
-// Colors
-$brand-color                  :   #0000FF;
-$text-color                   :   #000000;
+$brand_primary_color-100      :   hsl(240, 100%, 90%);
+$brand_primary_color-200      :   hsl(240, 100%, 80%);
+$brand_primary_color-300      :   hsl(240, 100%, 70%);
+$brand_primary_color-400      :   hsl(240, 100%, 60%);
+$brand_primary_color-500      :   hsl(240, 100%, 50%);
+$brand_primary_color-600      :   hsl(240, 100%, 40%);
+$brand_primary_color-700      :   hsl(240, 100%, 30%);
+$brand_primary_color-800      :   hsl(240, 100%, 20%);
+$brand_primary_color-900      :   hsl(240, 100%, 10%);
+
+$brand_secondary_color-100    :   hsl(180, 100%, 90%);
+$brand_secondary_color-200    :   hsl(180, 100%, 80%);
+$brand_secondary_color-300    :   hsl(180, 100%, 70%);
+$brand_secondary_color-400    :   hsl(180, 100%, 60%);
+$brand_secondary_color-500    :   hsl(180, 100%, 50%);
+$brand_secondary_color-600    :   hsl(180, 100%, 40%);
+$brand_secondary_color-700    :   hsl(180, 100%, 30%);
+$brand_secondary_color-800    :   hsl(180, 100%, 20%);
+$brand_secondary_color-900    :   hsl(180, 100%, 10%);
+
+$brand_primary_color          :   $brand_primary_color-700;
+$brand_secondary_color        :   $brand_secondary_color-900;
+$bg_color                     :   $brand_secondary_color-100;
+$text_color                   :   $brand_primary_color-900;
 
 // CSSeco BreakPoints
 $csseco_bp_320	              :    320px;
@@ -26,26 +47,13 @@ $csseco_bp_768	              :    768px;
 $csseco_bp_992	              :    992px;
 $csseco_bp_1200	              :    1200px;
 
-
-// CSS variables
-:root {
-
-  // Spacing
-  --margin_padding_bottom     :   20px;
-  @media screen and (min-width: $csseco_bp_576) {
-    --margin_padding_bottom   :   30px;
-  }
-  @media screen and (min-width: $csseco_bp_768) {
-    --margin_padding_bottom   :   35px;
-  }
-  @media screen and (min-width: $csseco_bp_992) {
-    --margin_padding_bottom   :   40px;
-  }
-  @media screen and (min-width: $csseco_bp_1200) {
-    --margin_padding_bottom   :   50px;
-  }
-
-}
+$breakpoints: (
+  xs : 320px,
+  sm : 576px,
+  md : 768px,
+  lg : 992px,
+  xl : 1200px,
+);
 
 // Misc
     // Bootstrap overwrite

@@ -1,0 +1,83 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the scssecoSlider component.
+// -----------------------------------------------------------------------------
+
+.scssecoSlider {
+  display: none;
+  outline: 2px solid red;  
+  padding: 10px;
+  position: relative;
+  .scssecoSlider_slides {
+    border: 2px solid red;
+    height: 0;
+    padding-top: 56.25%;
+    position: relative;
+    overflow: hidden;
+    .scssecoSlider_slide {
+      align-items: center;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      // font-size: 60px;
+      height: 100%;
+      justify-content: flex-end;
+      // opacity: 1;
+      position: absolute;
+      width: 100%;
+      top: 0;
+    //   z-index: 2;
+      // transition: 1s ease-in-out;
+      > * {
+          background-color: rgba(#FFF, .9);
+          padding: 10px;
+      }
+      &:not(.active) {
+        // opacity: 0;
+        // z-index: -100;
+      }
+      &.active {}
+    }
+  }
+  .scssecoSlider_controls {
+    padding: 10px 0 0;
+    .scssecoSlider_dots {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 70px;
+      button.scssecoSlider_dot {
+        &.active {
+          background-color: red;
+        }
+      }
+    }
+    .scssecoSlider_arrows {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      button.scssecoSlider_arrow {}
+    }
+  }
+  .scssecoSlider_dev {
+    background-color: rgba(#FFF, .8);
+    outline: 2px solid red;
+    padding: 10px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 3;
+    font-size: 14px;
+    @include media(xl) {
+      font-size: 24px;
+    }
+    ul {
+      list-style: none;
+      margin-bottom: 0;
+      padding: 0;
+    }
+    li {}
+  }
+}
